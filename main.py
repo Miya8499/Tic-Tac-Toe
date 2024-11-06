@@ -81,18 +81,9 @@ textO = fontO.render("O won!", True, "yellow")
 text_rectO = pygame.Rect(186, 276, 600, 600)
 
 while running:
-
     if Status == False :
         time.sleep(5)
         running = False
-
-    if button_rect1.collidepoint(pygame.mouse.get_pos()):
-        pygame.draw.rect(button_surface1, (127, 255, 212), (0, 0, 178, 176))
-    else:
-        pygame.draw.rect(button_surface1, (0, 0, 0), (0, 0, 178, 176))
-        pygame.draw.rect(button_surface1, (255, 255, 255), (0, 0, 178, 176))
-        pygame.draw.rect(button_surface1, (0, 0, 0), (0, 0, 178, 176), 2)
-        pygame.draw.rect(button_surface1, (0, 100, 0), (0, 0, 178, 176), 2)
 
     for event in pygame.event.get():
         # pressing X closes the program
@@ -193,7 +184,13 @@ while running:
     pygame.draw.line(screen, "white", start_pos=[390, 30], end_pos=[390, 570], width=4)
 
 # button hover effect
-
+    if button_rect1.collidepoint(pygame.mouse.get_pos()):
+        pygame.draw.rect(button_surface1, (127, 255, 212), (0, 0, 178, 176))
+    else:
+        pygame.draw.rect(button_surface1, (0, 0, 0), (0, 0, 178, 176))
+        pygame.draw.rect(button_surface1, (255, 255, 255), (0, 0, 178, 176))
+        pygame.draw.rect(button_surface1, (0, 0, 0), (0, 0, 178, 176), 2)
+        pygame.draw.rect(button_surface1, (0, 100, 0), (0, 0, 178, 176), 2)
 
     if button_rect2.collidepoint(pygame.mouse.get_pos()):
         pygame.draw.rect(button_surface2, (127, 255, 212), (0, 0, 178, 176))
@@ -285,7 +282,6 @@ while running:
             [team1 == 1, team5 == 1, team9 == 1]) or all([team3 == 1, team5 == 1, team7 == 1]):
         screen.blit(textX, text_rectX)
         Status = False
-
 
     elif all([team1 == 2, team2 == 2, team3 == 2]) or all([team2 == 2, team5 == 2, team8 == 2]) or all([team3 == 2, team6 == 2, team9 == 2]) or all(
             [team7 == 2, team8 == 2, team9 == 2]) or all([team1 == 2, team4 == 2, team7 == 2]) or all(
