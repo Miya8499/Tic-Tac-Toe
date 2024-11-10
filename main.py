@@ -11,54 +11,27 @@ Status = True
 pygame.display.set_caption("Tic_tac_Toe")
 
 # buttons
+def button(x, y, width, height, alpha = 32):
+    button_surface = pygame.Surface((width, height))
+    box = pygame.Surface((width, height), pygame.SRCALPHA, alpha)
+    box = box.convert_alpha()
+    button_rect = pygame.Rect(x, y, width, height)
 
+    return button_surface, box, button_rect
 # left side
-button_surface1 = pygame.Surface((178, 176))
-box1 = pygame.Surface((178, 176), pygame.SRCALPHA, 32)
-box1 = box1.convert_alpha()
-button_rect1 = pygame.Rect(30, 393, 178, 176)
-
-button_surface2 = pygame.Surface((178, 176))
-box2 = pygame.Surface((178, 176), pygame.SRCALPHA, 32)
-box2 = box2.convert_alpha()
-button_rect2 = pygame.Rect(30, 213, 178, 176)
-
-button_surface3 = pygame.Surface((178, 176))
-box3 = pygame.Surface((178, 176), pygame.SRCALPHA, 32)
-box3 = box3.convert_alpha()
-button_rect3 = pygame.Rect(30, 32, 178, 176)
+button_surface1, box1, button_rect1 = button(30, 393, 178, 176)
+button_surface2, box2, button_rect2 = button(30, 213, 178, 176)
+button_surface3, box3, button_rect3 = button(30, 32, 178, 176)
 
 # middle
-button_surface4 = pygame.Surface((176, 176))
-box4 = pygame.Surface((176, 176), pygame.SRCALPHA, 32)
-box4 = box4.convert_alpha()
-button_rect4 = pygame.Rect(213, 393, 176, 176)
-
-button_surface5 = pygame.Surface((176, 176))
-box5 = pygame.Surface((176, 176), pygame.SRCALPHA, 32)
-box5 = box5.convert_alpha()
-button_rect5 = pygame.Rect(213, 213, 176, 176)
-
-button_surface6 = pygame.Surface((176, 176))
-box6 = pygame.Surface((176, 176), pygame.SRCALPHA, 32)
-box6 = box6.convert_alpha()
-button_rect6 = pygame.Rect(213, 32, 176, 176)
+button_surface4, box4, button_rect4 = button(213, 393, 176, 176)
+button_surface5, box5, button_rect5 = button(213, 213, 176, 176)
+button_surface6, box6, button_rect6 = button(213, 32, 176, 176)
 
 # right side
-button_surface7 = pygame.Surface((178, 176))
-box7 = pygame.Surface((178, 176), pygame.SRCALPHA, 32)
-box7 = box7.convert_alpha()
-button_rect7 = pygame.Rect(394, 393, 178, 176)
-
-button_surface8 = pygame.Surface((178, 176))
-box8 = pygame.Surface((178, 176), pygame.SRCALPHA, 32)
-box8 = box8.convert_alpha()
-button_rect8 = pygame.Rect(394, 213, 178, 176)
-
-button_surface9 = pygame.Surface((178, 176))
-box9 = pygame.Surface((178, 176), pygame.SRCALPHA, 32)
-box9 = box9.convert_alpha()
-button_rect9 = pygame.Rect(394, 32, 178, 176)
+button_surface7, box7, button_rect7 = button(394, 393, 178, 176)
+button_surface8, box8, button_rect8 = button(394, 213, 178, 176)
+button_surface9, box9, button_rect9 = button(394, 32, 178, 176)
 
 counter = 0
 
@@ -77,10 +50,19 @@ grid_value = [[], [], [],
                 #3 6 9
                 #2 5 8
                 #1 4 7
+# draw x
+def x(box, grid):
+    pygame.draw.line(box, "blue", [46, 49], [126, 129], 4)
+    pygame.draw.line(box, "blue", [46, 129], [126, 49], 4)
+    grid_value[grid] = 1
+# draw o
+def o(box, grid):
+    pygame.draw.circle(box, "red", (86, 89), 40, 3)
+    grid_value[grid] = 2
 
 while running:
     if not Status:
-        time.sleep(5)
+        time.sleep(2)
         running = False
 
     for event in pygame.event.get():
@@ -92,84 +74,57 @@ while running:
             counter += 1 # switches between X and O every click
             if button_rect1.collidepoint(event.pos):
                 if counter % 2 == 0:
-                    pygame.draw.circle(box1, "red", (86, 89), 40, 3)
-                    grid_value[6] = 2
+                    o(box1, 6)
                 elif counter % 2 != 0:
-                    pygame.draw.line(box1, "blue", [46, 49], [126, 129], 4)
-                    pygame.draw.line(box1, "blue", [46, 129], [126, 49], 4)
-                    grid_value[6] = 1
+                    x(box1, 6)
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if button_rect2.collidepoint(event.pos):
                 if counter % 2 == 0:
-                    pygame.draw.circle(box2, "red", (86, 89), 40, 3)
-                    grid_value[3] = 2
+                    o(box2, 3)
                 elif counter % 2 != 0:
-                    pygame.draw.line(box2, "blue", [46, 49], [126, 129], 4)
-                    pygame.draw.line(box2, "blue", [46, 129], [126, 49], 4)
-                    grid_value[3] = 1
+                    x(box2, 3)
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if button_rect3.collidepoint(event.pos):
                 if counter % 2 == 0:
-                    pygame.draw.circle(box3, "red", (86, 89), 40, 3)
-                    grid_value[0] = 2
+                    o(box3, 0)
                 elif counter % 2 != 0:
-                    pygame.draw.line(box3, "blue", [46, 49], [126, 129], 4)
-                    pygame.draw.line(box3, "blue", [46, 129], [126, 49], 4)
-                    grid_value[0] = 1
+                    x(box3, 0)
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if button_rect4.collidepoint(event.pos):
                 if counter % 2 == 0:
-                    pygame.draw.circle(box4, "red", (86, 89), 40, 3)
-                    grid_value[7] = 2
+                    o(box4, 7)
                 elif counter % 2 != 0:
-                    pygame.draw.line(box4, "blue", [46, 49], [126, 129], 4)
-                    pygame.draw.line(box4, "blue", [46, 129], [126, 49], 4)
-                    grid_value[7] = 1
+                    x(box4, 7)
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if button_rect5.collidepoint(event.pos):
                 if counter % 2 == 0:
-                    pygame.draw.circle(box5, "red", (86, 89), 40, 3)
-                    grid_value[4] = 2
+                    o(box5, 4)
                 elif counter % 2 != 0:
-                    pygame.draw.line(box5, "blue", [46, 49], [126, 129], 4)
-                    pygame.draw.line(box5, "blue", [46, 129], [126, 49], 4)
-                    grid_value[4] = 1
+                    x(box5, 4)
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if button_rect6.collidepoint(event.pos):
                 if counter % 2 == 0:
-                    pygame.draw.circle(box6, "red", (86, 89), 40, 3)
-                    grid_value[1] = 2
+                    o(box6, 1)
                 elif counter % 2 != 0:
-                    pygame.draw.line(box6, "blue", [46, 49], [126, 129], 4)
-                    pygame.draw.line(box6, "blue", [46, 129], [126, 49], 4)
-                    grid_value[1] = 1
+                    x(box6, 1)
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if button_rect7.collidepoint(event.pos):
                 if counter % 2 == 0:
-                    pygame.draw.circle(box7, "red", (86, 89), 40, 3)
-                    grid_value[8] = 2
+                    o(box7, 8)
                 elif counter % 2 != 0:
-                    pygame.draw.line(box7, "blue", [46, 49], [126, 129], 4)
-                    pygame.draw.line(box7, "blue", [46, 129], [126, 49], 4)
-                    grid_value[8] = 1
+                    x(box7, 8)
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if button_rect8.collidepoint(event.pos):
                 if counter % 2 == 0:
-                    pygame.draw.circle(box8, "red", (86, 89), 40, 3)
-                    grid_value[5] = 2
+                    o(box8, 5)
                 elif counter % 2 != 0:
-                    pygame.draw.line(box8, "blue", [46, 49], [126, 129], 4)
-                    pygame.draw.line(box8, "blue", [46, 129], [126, 49], 4)
-                    grid_value[5] = 1
+                    x(box8, 5)
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if button_rect9.collidepoint(event.pos):
                 if counter % 2 == 0:
-                    pygame.draw.circle(box9, "red", (86, 89), 40, 3)
-                    grid_value[2] = 2
+                    o(box9, 2)
                 elif counter % 2 != 0:
-                    pygame.draw.line(box9, "blue", [46, 49], [126, 129], 4)
-                    pygame.draw.line(box9, "blue", [46, 129], [126, 49], 4)
-                    grid_value[2] = 1
+                    x(box9, 2)
 
     screen.fill((155, 255, 155))
 
@@ -182,77 +137,24 @@ while running:
     pygame.draw.line(screen, "white", start_pos=[390, 30], end_pos=[390, 570], width=4)
 
 # button hover effect
-    if button_rect1.collidepoint(pygame.mouse.get_pos()):
-        pygame.draw.rect(button_surface1, (127, 255, 212), (0, 0, 178, 176))
-    else:
-        pygame.draw.rect(button_surface1, (0, 0, 0), (0, 0, 178, 176))
-        pygame.draw.rect(button_surface1, (255, 255, 255), (0, 0, 178, 176))
-        pygame.draw.rect(button_surface1, (0, 0, 0), (0, 0, 178, 176), 2)
-        pygame.draw.rect(button_surface1, (0, 100, 0), (0, 0, 178, 176), 2)
+    def hover(button_rect, button_surface):
+        if button_rect.collidepoint(pygame.mouse.get_pos()):
+            pygame.draw.rect(button_surface, (127, 255, 212), (0, 0, 178, 176))
+        else:
+            pygame.draw.rect(button_surface, (0, 0, 0), (0, 0, 178, 176))
+            pygame.draw.rect(button_surface, (255, 255, 255), (0, 0, 178, 176))
+            pygame.draw.rect(button_surface, (0, 0, 0), (0, 0, 178, 176), 2)
+            pygame.draw.rect(button_surface, (0, 100, 0), (0, 0, 178, 176), 2)
 
-    if button_rect2.collidepoint(pygame.mouse.get_pos()):
-        pygame.draw.rect(button_surface2, (127, 255, 212), (0, 0, 178, 176))
-    else:
-        pygame.draw.rect(button_surface2, (0, 0, 0), (0, 0, 178, 176))
-        pygame.draw.rect(button_surface2, (255, 255, 255), (0, 0, 178, 176))
-        pygame.draw.rect(button_surface2, (0, 0, 0), (0, 0, 178, 176), 2)
-        pygame.draw.rect(button_surface2, (0, 100, 0), (0, 0, 178, 176), 2)
-
-    if button_rect3.collidepoint(pygame.mouse.get_pos()):
-        pygame.draw.rect(button_surface3, (127, 255, 212), (0, 0, 178, 176))
-    else:
-        pygame.draw.rect(button_surface3, (0, 0, 0), (0, 0, 178, 176))
-        pygame.draw.rect(button_surface3, (255, 255, 255), (0, 0, 178, 176))
-        pygame.draw.rect(button_surface3, (0, 0, 0), (0, 0, 178, 176), 2)
-        pygame.draw.rect(button_surface3, (0, 100, 0), (0, 0, 178, 176), 2)
-
-    if button_rect4.collidepoint(pygame.mouse.get_pos()):
-        pygame.draw.rect(button_surface4, (127, 255, 212), (0, 0, 176, 176))
-    else:
-        pygame.draw.rect(button_surface4, (0, 0, 0), (0, 0, 176, 176))
-        pygame.draw.rect(button_surface4, (255, 255, 255), (0, 0, 176, 176))
-        pygame.draw.rect(button_surface4, (0, 0, 0), (0, 0, 176, 176), 2)
-        pygame.draw.rect(button_surface4, (0, 100, 0), (0, 0, 176, 176), 2)
-
-    if button_rect5.collidepoint(pygame.mouse.get_pos()):
-        pygame.draw.rect(button_surface5, (127, 255, 212), (0, 0, 176, 176))
-    else:
-        pygame.draw.rect(button_surface5, (0, 0, 0), (0, 0, 176, 176))
-        pygame.draw.rect(button_surface5, (255, 255, 255), (0, 0, 176, 176))
-        pygame.draw.rect(button_surface5, (0, 0, 0), (0, 0, 176, 176), 2)
-        pygame.draw.rect(button_surface5, (0, 100, 0), (0, 0, 176, 176), 2)
-
-    if button_rect6.collidepoint(pygame.mouse.get_pos()):
-        pygame.draw.rect(button_surface6, (127, 255, 212), (0, 0, 176, 176))
-    else:
-        pygame.draw.rect(button_surface6, (0, 0, 0), (0, 0, 176, 176))
-        pygame.draw.rect(button_surface6, (255, 255, 255), (0, 0, 176, 176))
-        pygame.draw.rect(button_surface6, (0, 0, 0), (0, 0, 176, 176), 2)
-        pygame.draw.rect(button_surface6, (0, 100, 0), (0, 0, 176, 176), 2)
-
-    if button_rect7.collidepoint(pygame.mouse.get_pos()):
-        pygame.draw.rect(button_surface7, (127, 255, 212), (0, 0, 178, 176))
-    else:
-        pygame.draw.rect(button_surface7, (0, 0, 0), (0, 0, 178, 176))
-        pygame.draw.rect(button_surface7, (255, 255, 255), (0, 0, 178, 176))
-        pygame.draw.rect(button_surface7, (0, 0, 0), (0, 0, 178, 176), 2)
-        pygame.draw.rect(button_surface7, (0, 100, 0), (0, 0, 178, 176), 2)
-
-    if button_rect8.collidepoint(pygame.mouse.get_pos()):
-        pygame.draw.rect(button_surface8, (127, 255, 212), (0, 0, 178, 176))
-    else:
-        pygame.draw.rect(button_surface8, (0, 0, 0), (0, 0, 178, 176))
-        pygame.draw.rect(button_surface8, (255, 255, 255), (0, 0, 178, 176))
-        pygame.draw.rect(button_surface8, (0, 0, 0), (0, 0, 178, 176), 2)
-        pygame.draw.rect(button_surface8, (0, 100, 0), (0, 0, 178, 176), 2)
-
-    if button_rect9.collidepoint(pygame.mouse.get_pos()):
-        pygame.draw.rect(button_surface9, (127, 255, 212), (0, 0, 178, 176))
-    else:
-        pygame.draw.rect(button_surface9, (0, 0, 0), (0, 0, 178, 176))
-        pygame.draw.rect(button_surface9, (255, 255, 255), (0, 0, 178, 176))
-        pygame.draw.rect(button_surface9, (0, 0, 0), (0, 0, 178, 176), 2)
-        pygame.draw.rect(button_surface9, (0, 100, 0), (0, 0, 178, 176), 2)
+    hover(button_rect1, button_surface1)
+    hover(button_rect2, button_surface2)
+    hover(button_rect3, button_surface3)
+    hover(button_rect4, button_surface4)
+    hover(button_rect5, button_surface5)
+    hover(button_rect6, button_surface6)
+    hover(button_rect7, button_surface7)
+    hover(button_rect8, button_surface8)
+    hover(button_rect9, button_surface9)
 
     screen.blit(button_surface1, (button_rect1.x, button_rect1.y))
     screen.blit(button_surface2, (button_rect2.x, button_rect2.y))
