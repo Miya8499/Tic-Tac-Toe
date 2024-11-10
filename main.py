@@ -17,57 +17,48 @@ button_surface1 = pygame.Surface((178, 176))
 box1 = pygame.Surface((178, 176), pygame.SRCALPHA, 32)
 box1 = box1.convert_alpha()
 button_rect1 = pygame.Rect(30, 393, 178, 176)
-team1 = 0
 
 button_surface2 = pygame.Surface((178, 176))
 box2 = pygame.Surface((178, 176), pygame.SRCALPHA, 32)
 box2 = box2.convert_alpha()
 button_rect2 = pygame.Rect(30, 213, 178, 176)
-team2 = 0
 
 button_surface3 = pygame.Surface((178, 176))
 box3 = pygame.Surface((178, 176), pygame.SRCALPHA, 32)
 box3 = box3.convert_alpha()
 button_rect3 = pygame.Rect(30, 32, 178, 176)
-team3 = 0
 
 # middle
 button_surface4 = pygame.Surface((176, 176))
 box4 = pygame.Surface((176, 176), pygame.SRCALPHA, 32)
 box4 = box4.convert_alpha()
 button_rect4 = pygame.Rect(213, 393, 176, 176)
-team4 = 0
 
 button_surface5 = pygame.Surface((176, 176))
 box5 = pygame.Surface((176, 176), pygame.SRCALPHA, 32)
 box5 = box5.convert_alpha()
 button_rect5 = pygame.Rect(213, 213, 176, 176)
-team5 = 0
 
 button_surface6 = pygame.Surface((176, 176))
 box6 = pygame.Surface((176, 176), pygame.SRCALPHA, 32)
 box6 = box6.convert_alpha()
 button_rect6 = pygame.Rect(213, 32, 176, 176)
-team6 = 0
 
 # right side
 button_surface7 = pygame.Surface((178, 176))
 box7 = pygame.Surface((178, 176), pygame.SRCALPHA, 32)
 box7 = box7.convert_alpha()
 button_rect7 = pygame.Rect(394, 393, 178, 176)
-team7 = 0
 
 button_surface8 = pygame.Surface((178, 176))
 box8 = pygame.Surface((178, 176), pygame.SRCALPHA, 32)
 box8 = box8.convert_alpha()
 button_rect8 = pygame.Rect(394, 213, 178, 176)
-team8 = 0
 
 button_surface9 = pygame.Surface((178, 176))
 box9 = pygame.Surface((178, 176), pygame.SRCALPHA, 32)
 box9 = box9.convert_alpha()
 button_rect9 = pygame.Rect(394, 32, 178, 176)
-team9 = 0
 
 counter = 0
 
