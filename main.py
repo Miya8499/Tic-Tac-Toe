@@ -80,8 +80,15 @@ fontO = pygame.font.Font(None, 100)
 textO = fontO.render("O won!", True, "yellow")
 text_rectO = pygame.Rect(186, 276, 600, 600)
 
+grid_value = [[], [], [],
+              [], [], [],
+              [], [], []]
+                #3 6 9
+                #2 5 8
+                #1 4 7
+
 while running:
-    if Status == False :
+    if not Status:
         time.sleep(5)
         running = False
 
@@ -95,83 +102,83 @@ while running:
             if button_rect1.collidepoint(event.pos):
                 if counter % 2 == 0:
                     pygame.draw.circle(box1, "red", (86, 89), 40, 3)
-                    team1 = 2
+                    grid_value[6] = 2
                 elif counter % 2 != 0:
                     pygame.draw.line(box1, "blue", [46, 49], [126, 129], 4)
                     pygame.draw.line(box1, "blue", [46, 129], [126, 49], 4)
-                    team1 = 1
+                    grid_value[6] = 1
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if button_rect2.collidepoint(event.pos):
                 if counter % 2 == 0:
                     pygame.draw.circle(box2, "red", (86, 89), 40, 3)
-                    team2 = 2
+                    grid_value[3] = 2
                 elif counter % 2 != 0:
                     pygame.draw.line(box2, "blue", [46, 49], [126, 129], 4)
                     pygame.draw.line(box2, "blue", [46, 129], [126, 49], 4)
-                    team2 = 1
+                    grid_value[3] = 1
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if button_rect3.collidepoint(event.pos):
                 if counter % 2 == 0:
                     pygame.draw.circle(box3, "red", (86, 89), 40, 3)
-                    team3 = 2
+                    grid_value[0] = 2
                 elif counter % 2 != 0:
                     pygame.draw.line(box3, "blue", [46, 49], [126, 129], 4)
                     pygame.draw.line(box3, "blue", [46, 129], [126, 49], 4)
-                    team3 = 1
+                    grid_value[0] = 1
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if button_rect4.collidepoint(event.pos):
                 if counter % 2 == 0:
                     pygame.draw.circle(box4, "red", (86, 89), 40, 3)
-                    team4 = 2
+                    grid_value[7] = 2
                 elif counter % 2 != 0:
                     pygame.draw.line(box4, "blue", [46, 49], [126, 129], 4)
                     pygame.draw.line(box4, "blue", [46, 129], [126, 49], 4)
-                    team4 = 1
+                    grid_value[7] = 1
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if button_rect5.collidepoint(event.pos):
                 if counter % 2 == 0:
                     pygame.draw.circle(box5, "red", (86, 89), 40, 3)
-                    team5 = 2
+                    grid_value[4] = 2
                 elif counter % 2 != 0:
                     pygame.draw.line(box5, "blue", [46, 49], [126, 129], 4)
                     pygame.draw.line(box5, "blue", [46, 129], [126, 49], 4)
-                    team5 = 1
+                    grid_value[4] = 1
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if button_rect6.collidepoint(event.pos):
                 if counter % 2 == 0:
                     pygame.draw.circle(box6, "red", (86, 89), 40, 3)
-                    team6 = 2
+                    grid_value[1] = 2
                 elif counter % 2 != 0:
                     pygame.draw.line(box6, "blue", [46, 49], [126, 129], 4)
                     pygame.draw.line(box6, "blue", [46, 129], [126, 49], 4)
-                    team6 = 1
+                    grid_value[1] = 1
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if button_rect7.collidepoint(event.pos):
                 if counter % 2 == 0:
                     pygame.draw.circle(box7, "red", (86, 89), 40, 3)
-                    team7 = 2
+                    grid_value[8] = 2
                 elif counter % 2 != 0:
                     pygame.draw.line(box7, "blue", [46, 49], [126, 129], 4)
                     pygame.draw.line(box7, "blue", [46, 129], [126, 49], 4)
-                    team7 = 1
+                    grid_value[8] = 1
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if button_rect8.collidepoint(event.pos):
                 if counter % 2 == 0:
                     pygame.draw.circle(box8, "red", (86, 89), 40, 3)
-                    team8 = 2
+                    grid_value[5] = 2
                 elif counter % 2 != 0:
                     pygame.draw.line(box8, "blue", [46, 49], [126, 129], 4)
                     pygame.draw.line(box8, "blue", [46, 129], [126, 49], 4)
-                    team8 = 1
+                    grid_value[5] = 1
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if button_rect9.collidepoint(event.pos):
                 if counter % 2 == 0:
                     pygame.draw.circle(box9, "red", (86, 89), 40, 3)
-                    team9 = 2
+                    grid_value[2] = 2
                 elif counter % 2 != 0:
                     pygame.draw.line(box9, "blue", [46, 49], [126, 129], 4)
                     pygame.draw.line(box9, "blue", [46, 129], [126, 49], 4)
-                    team9 = 1
+                    grid_value[2] = 1
 
     screen.fill((155, 255, 155))
 
@@ -277,15 +284,17 @@ while running:
     screen.blit(box9, (button_rect9.x, button_rect9.y))
 
 #winning conditions
-    if all([team1 == 1, team2 == 1, team3 == 1]) or all([team2 == 1, team5 == 1, team8 == 1]) or all([team3 == 1, team6 == 1, team9 == 1]) or all(
-            [team7 == 1, team8 == 1, team9 == 1]) or all([team1 == 1, team4 == 1, team7 == 1]) or all(
-            [team1 == 1, team5 == 1, team9 == 1]) or all([team3 == 1, team5 == 1, team7 == 1]):
+    if all([grid_value[6] == 1, grid_value[3] == 1, grid_value[0] == 1]) or all([grid_value[6] == 1, grid_value[4] == 1, grid_value[2] == 1]) or all(
+            [grid_value[0] == 1, grid_value[1] == 1, grid_value[2] == 1]) or all([grid_value[8] == 1, grid_value[5] == 1, grid_value[2] == 1]) or all(
+            [grid_value[6] == 1, grid_value[7] == 1, grid_value[8] == 1]) or all([grid_value[0] == 1, grid_value[4] == 1, grid_value[8] == 1]) or all(
+            [grid_value[3] == 1, grid_value[4] == 1, grid_value[5] == 1]) or all([grid_value[1] == 1, grid_value[7] == 1, grid_value[4] == 1]):
         screen.blit(textX, text_rectX)
         Status = False
 
-    elif all([team1 == 2, team2 == 2, team3 == 2]) or all([team2 == 2, team5 == 2, team8 == 2]) or all([team3 == 2, team6 == 2, team9 == 2]) or all(
-            [team7 == 2, team8 == 2, team9 == 2]) or all([team1 == 2, team4 == 2, team7 == 2]) or all(
-            [team1 == 2, team5 == 2, team9 == 2]) or all([team3 == 2, team5 == 2, team7 == 2]):
+    elif all([grid_value[6] == 2, grid_value[6] == 2, grid_value[0] == 2]) or all([grid_value[6] == 2, grid_value[4] == 2, grid_value[2] == 2]) or all(
+            [grid_value[0] == 2, grid_value[1] == 2, grid_value[2] == 2]) or all([grid_value[8] == 2, grid_value[5] == 2, grid_value[2] == 2]) or all(
+            [grid_value[6] == 2, grid_value[7] == 2, grid_value[8] == 2]) or all([grid_value[0] == 2, grid_value[4] == 2, grid_value[8] == 2]) or all(
+            [grid_value[3] == 2, grid_value[4] == 2, grid_value[5] == 2]) or all([grid_value[1] == 2, grid_value[7] == 2, grid_value[4] == 2]):
         screen.blit(textO, text_rectO)
         Status = False
 
