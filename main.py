@@ -33,8 +33,6 @@ button_surface7, box7, button_rect7 = button(394, 393, 178, 176)
 button_surface8, box8, button_rect8 = button(394, 213, 178, 176)
 button_surface9, box9, button_rect9 = button(394, 32, 178, 176)
 
-counter = 0
-
 # winning text
 fontX = pygame.font.Font(None, 100)
 textX = fontX.render("X won!", True, "yellow")
@@ -59,6 +57,18 @@ def x(box, grid):
 def o(box, grid):
     pygame.draw.circle(box, "red", (86, 89), 40, 3)
     grid_value[grid] = 2
+
+# button hover effect
+def hover(button_rect, button_surface):
+    if button_rect.collidepoint(pygame.mouse.get_pos()):
+        pygame.draw.rect(button_surface, (127, 255, 212), (0, 0, 178, 176))
+    else:
+        pygame.draw.rect(button_surface, (0, 0, 0), (0, 0, 178, 176))
+        pygame.draw.rect(button_surface, (255, 255, 255), (0, 0, 178, 176))
+        pygame.draw.rect(button_surface, (0, 0, 0), (0, 0, 178, 176), 2)
+        pygame.draw.rect(button_surface, (0, 100, 0), (0, 0, 178, 176), 2)
+
+counter = 0
 
 while running:
     if not Status:
@@ -135,16 +145,6 @@ while running:
     # vertical lines
     pygame.draw.line(screen, "white", start_pos=[210, 30], end_pos=[210, 570], width=4)
     pygame.draw.line(screen, "white", start_pos=[390, 30], end_pos=[390, 570], width=4)
-
-# button hover effect
-    def hover(button_rect, button_surface):
-        if button_rect.collidepoint(pygame.mouse.get_pos()):
-            pygame.draw.rect(button_surface, (127, 255, 212), (0, 0, 178, 176))
-        else:
-            pygame.draw.rect(button_surface, (0, 0, 0), (0, 0, 178, 176))
-            pygame.draw.rect(button_surface, (255, 255, 255), (0, 0, 178, 176))
-            pygame.draw.rect(button_surface, (0, 0, 0), (0, 0, 178, 176), 2)
-            pygame.draw.rect(button_surface, (0, 100, 0), (0, 0, 178, 176), 2)
 
     hover(button_rect1, button_surface1)
     hover(button_rect2, button_surface2)
