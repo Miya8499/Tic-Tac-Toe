@@ -50,11 +50,13 @@ grid_value = [[], [], [],
                 #1 4 7
 # draw x
 def x(box, grid):
+    box.fill((0, 0, 0, 0))
     pygame.draw.line(box, "blue", [46, 49], [126, 129], 4)
     pygame.draw.line(box, "blue", [46, 129], [126, 49], 4)
     grid_value[grid] = 1
 # draw o
 def o(box, grid):
+    box.fill((0, 0, 0, 0))
     pygame.draw.circle(box, "red", (86, 89), 40, 3)
     grid_value[grid] = 2
 
@@ -198,4 +200,3 @@ while running:
     pygame.display.update()
 
 pygame.quit()
-
