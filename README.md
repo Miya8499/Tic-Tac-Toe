@@ -1,4 +1,4 @@
-Tic-Tac-Toe made using pygame: /n
+Tic-Tac-Toe made using pygame:                                                         
 -the cells have a hover effect 
 -you can steal an already occupied cell 
 -the game doesn't end till one of the two players wins
