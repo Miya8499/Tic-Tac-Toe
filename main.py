@@ -42,12 +42,10 @@ fontO = pygame.font.Font(None, 100)
 textO = fontO.render("O won!", True, "yellow")
 text_rectO = pygame.Rect(186, 276, 600, 600)
 
-grid_value = [[], [], [],
-              [], [], [],
-              [], [], []]
-                #3 6 9
-                #2 5 8
-                #1 4 7
+grid_value = [[], [], [],                #3 6 9
+              [], [], [],                #2 5 8
+              [], [], []]                #1 4 7
+
 # draw x
 def x(box, grid):
     box.fill((0, 0, 0, 0))
@@ -77,66 +75,26 @@ while running:
         time.sleep(2)
         running = False
 
+    # Store the button_rects, boxes, and positions in lists
+    button_rects = [button_rect1, button_rect2, button_rect3, button_rect4, button_rect5, button_rect6, button_rect7,
+                    button_rect8, button_rect9]
+    boxes = [box1, box2, box3, box4, box5, box6, box7, box8, box9]
+    positions = [6, 3, 0, 7, 4, 1, 8, 5, 2]
+
     for event in pygame.event.get():
         # pressing X closes the program
         if event.type == pygame.QUIT:
             running = False
+
         # check pressing buttons
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            counter += 1 # switches between X and O every click
-            if button_rect1.collidepoint(event.pos):
-                if counter % 2 == 0:
-                    o(box1, 6)
-                elif counter % 2 != 0:
-                    x(box1, 6)
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            if button_rect2.collidepoint(event.pos):
-                if counter % 2 == 0:
-                    o(box2, 3)
-                elif counter % 2 != 0:
-                    x(box2, 3)
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            if button_rect3.collidepoint(event.pos):
-                if counter % 2 == 0:
-                    o(box3, 0)
-                elif counter % 2 != 0:
-                    x(box3, 0)
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            if button_rect4.collidepoint(event.pos):
-                if counter % 2 == 0:
-                    o(box4, 7)
-                elif counter % 2 != 0:
-                    x(box4, 7)
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            if button_rect5.collidepoint(event.pos):
-                if counter % 2 == 0:
-                    o(box5, 4)
-                elif counter % 2 != 0:
-                    x(box5, 4)
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            if button_rect6.collidepoint(event.pos):
-                if counter % 2 == 0:
-                    o(box6, 1)
-                elif counter % 2 != 0:
-                    x(box6, 1)
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            if button_rect7.collidepoint(event.pos):
-                if counter % 2 == 0:
-                    o(box7, 8)
-                elif counter % 2 != 0:
-                    x(box7, 8)
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            if button_rect8.collidepoint(event.pos):
-                if counter % 2 == 0:
-                    o(box8, 5)
-                elif counter % 2 != 0:
-                    x(box8, 5)
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
-            if button_rect9.collidepoint(event.pos):
-                if counter % 2 == 0:
-                    o(box9, 2)
-                elif counter % 2 != 0:
-                    x(box9, 2)
+            for i in range(9):
+                if button_rects[i].collidepoint(event.pos):
+                    counter += 1  # Switches between X and O every click
+                    if counter % 2 == 0:
+                        o(boxes[i], positions[i])
+                    else:
+                        x(boxes[i], positions[i])
 
     screen.fill((155, 255, 155))
 
@@ -148,55 +106,43 @@ while running:
     pygame.draw.line(screen, "white", start_pos=[210, 30], end_pos=[210, 570], width=4)
     pygame.draw.line(screen, "white", start_pos=[390, 30], end_pos=[390, 570], width=4)
 
-    hover(button_rect1, button_surface1)
-    hover(button_rect2, button_surface2)
-    hover(button_rect3, button_surface3)
-    hover(button_rect4, button_surface4)
-    hover(button_rect5, button_surface5)
-    hover(button_rect6, button_surface6)
-    hover(button_rect7, button_surface7)
-    hover(button_rect8, button_surface8)
-    hover(button_rect9, button_surface9)
+    button_rects = [button_rect1, button_rect2, button_rect3, button_rect4, button_rect5, button_rect6, button_rect7,
+                    button_rect8, button_rect9]
+    button_surfaces = [button_surface1, button_surface2, button_surface3, button_surface4, button_surface5,
+                       button_surface6, button_surface7, button_surface8, button_surface9]
 
-    screen.blit(button_surface1, (button_rect1.x, button_rect1.y))
-    screen.blit(button_surface2, (button_rect2.x, button_rect2.y))
-    screen.blit(button_surface3, (button_rect3.x, button_rect3.y))
-    screen.blit(button_surface4, (button_rect4.x, button_rect4.y))
-    screen.blit(button_surface5, (button_rect5.x, button_rect5.y))
-    screen.blit(button_surface6, (button_rect6.x, button_rect6.y))
-    screen.blit(button_surface7, (button_rect7.x, button_rect7.y))
-    screen.blit(button_surface8, (button_rect8.x, button_rect8.y))
-    screen.blit(button_surface9, (button_rect9.x, button_rect9.y))
+    for button_rect, button_surface in zip(button_rects, button_surfaces):
+        hover(button_rect, button_surface)
 
-    screen.blit(box1, (button_rect1.x, button_rect1.y))
-    screen.blit(box2, (button_rect2.x, button_rect2.y))
-    screen.blit(box3, (button_rect3.x, button_rect3.y))
-    screen.blit(box4, (button_rect4.x, button_rect4.y))
-    screen.blit(box5, (button_rect5.x, button_rect5.y))
-    screen.blit(box6, (button_rect6.x, button_rect6.y))
-    screen.blit(box7, (button_rect7.x, button_rect7.y))
-    screen.blit(box8, (button_rect8.x, button_rect8.y))
-    screen.blit(box9, (button_rect9.x, button_rect9.y))
+    button_rects = [button_rect1, button_rect2, button_rect3, button_rect4, button_rect5, button_rect6, button_rect7,
+                    button_rect8, button_rect9]
+    button_surfaces = [button_surface1, button_surface2, button_surface3, button_surface4, button_surface5,
+                       button_surface6, button_surface7, button_surface8, button_surface9]
+
+    for button_rect, button_surface in zip(button_rects, button_surfaces):
+        screen.blit(button_surface, (button_rect.x, button_rect.y))
+
+    boxes = [box1, box2, box3, box4, box5, box6, box7, box8, box9]
+    button_rects = [button_rect1, button_rect2, button_rect3, button_rect4, button_rect5, button_rect6, button_rect7,
+                    button_rect8, button_rect9]
+
+    for box, button_rect in zip(boxes, button_rects):
+        screen.blit(box, (button_rect.x, button_rect.y))
 
 #winning conditions
-    if all([grid_value[6] == 1, grid_value[3] == 1, grid_value[0] == 1]) or all([grid_value[6] == 1, grid_value[4] == 1, grid_value[2] == 1]) or all(
-            [grid_value[0] == 1, grid_value[1] == 1, grid_value[2] == 1]) or all([grid_value[8] == 1, grid_value[5] == 1, grid_value[2] == 1]) or all(
-            [grid_value[6] == 1, grid_value[7] == 1, grid_value[8] == 1]) or all([grid_value[0] == 1, grid_value[4] == 1, grid_value[8] == 1]) or all(
-            [grid_value[3] == 1, grid_value[4] == 1, grid_value[5] == 1]) or all([grid_value[1] == 1, grid_value[7] == 1, grid_value[4] == 1]):
+    win_conditions = [
+        [6, 3, 0], [6, 4, 2], [0, 1, 2], [8, 5, 2], [6, 7, 8], [0, 4, 8], [3, 4, 5], [1, 7, 4]
+    ]
+
+    if any(all(grid_value[i] == 1 for i in condition) for condition in win_conditions):
         screen.blit(textX, text_rectX)
         Status = False
 
-    elif all([grid_value[6] == 2, grid_value[6] == 2, grid_value[0] == 2]) or all([grid_value[6] == 2, grid_value[4] == 2, grid_value[2] == 2]) or all(
-            [grid_value[0] == 2, grid_value[1] == 2, grid_value[2] == 2]) or all([grid_value[8] == 2, grid_value[5] == 2, grid_value[2] == 2]) or all(
-            [grid_value[6] == 2, grid_value[7] == 2, grid_value[8] == 2]) or all([grid_value[0] == 2, grid_value[4] == 2, grid_value[8] == 2]) or all(
-            [grid_value[3] == 2, grid_value[4] == 2, grid_value[5] == 2]) or all([grid_value[1] == 2, grid_value[7] == 2, grid_value[4] == 2]):
+    elif any(all(grid_value[i] == 2 for i in condition) for condition in win_conditions):
         screen.blit(textO, text_rectO)
         Status = False
 
     pygame.display.flip()
-
     clock.tick(60)
-
     pygame.display.update()
-
 pygame.quit()
